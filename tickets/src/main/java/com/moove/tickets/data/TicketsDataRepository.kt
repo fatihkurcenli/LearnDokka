@@ -14,7 +14,6 @@ class TicketsDataRepository(
     private val backgroundDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : TicketsRepository {
 
-
     override suspend fun getRyders(): List<Ryder> = withContext(backgroundDispatcher) {
         val data = ticketsLocalDataSource.getData()
         data.map { it.value.asDomain(it.key) }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/tickets_flow"
+    app:startDestination="@id/rydersFragment">
+
+    <fragment
+        android:id="@+id/rydersFragment"
+        android:name="com.moove.tickets.presentation.list.RyderListFragment"
+        android:label="@string/select_ryder_title"
+        >
+
+        <action
+            android:id="@+id/action_rydersFragment_to_fareListFragment"
+            app:destination="@id/fareListFragment">
+            <argument
+                android:name="ryderId"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fareListFragment"
+        android:name="com.moove.tickets.presentation.fare.FareListFragment"
+        android:label="@string/select_fare_title"
+        >
+
+        <argument
+            android:name="ryderId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_fareListFragment_to_confirmationFragment"
+            app:destination="@id/confirmationFragment">
+            <argument
+                android:name="ryderId"
+                app:argType="string" />
+
+            <argument
+                android:name="fare"
+                app:argType="com.moove.tickets.presentation.fare.model.FareModel" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/confirmationFragment"
+        android:name="com.moove.tickets.presentation.confirmation.ConfirmationFragment"
+        android:label="@string/confirm_selection_title"
+        >
+
+        <argument
+            android:name="ryderId"
+            app:argType="string" />
+
+        <argument
+            android:name="fare"
+            app:argType="com.moove.tickets.presentation.fare.model.FareModel" />
+    </fragment>
+
+</navigation>
